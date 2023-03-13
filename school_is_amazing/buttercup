@@ -1,0 +1,2 @@
+#!/bin/bash
+git add  .  && read -p "Enter commit messgae:" commit_message  && git commit -m  && git push

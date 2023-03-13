@@ -1,0 +1,7 @@
+[user]
+	email = trisraquel1@gmail.com
+	name = Trisraki
+[core]
+	excludesfile = /root/.gitignore_global
+[credential]
+	helper = store
