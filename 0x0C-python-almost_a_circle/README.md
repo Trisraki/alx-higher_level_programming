@@ -12,3 +12,10 @@ rectangle.py
 This class Rectangle inherits from the Base class.
 square.py
 This clas Square inherits from the Rectangle class.
+[0. If it's not tested it doesn't work]
+All your files, classes and methods must be unit tested and be PEP 8 validated.
+[1. Base class]
+Write the first class Base:
+[2. First Rectangle]
+Write the class Rectangle that inherits from Base:
+[3. Validate attributes]
