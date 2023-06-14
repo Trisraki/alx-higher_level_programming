@@ -1,8 +1,4 @@
 #!/usr/bin/node
-const myObject = {
-  type: 'object',
-  value: 12
+exports.add = (a, b) => {
+  return a + b;
 };
-console.log(myObject);
-myObject.value = 89;
-console.log(myObject);
