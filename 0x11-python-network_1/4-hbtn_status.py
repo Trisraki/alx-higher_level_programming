@@ -10,4 +10,4 @@ if __name__ == '__main__':
     text = r.text
     print("Body response:")
     print(f"\t- type: {type(text)}")
-    print(f"\t- content: {r.text}")
+    print(f"\t- content: {text}")
