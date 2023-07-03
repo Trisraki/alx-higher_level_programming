@@ -1,34 +1,31 @@
 #!/usr/bin/python3
-'''
-Returns the peak of an unsorted list
-'''
-ret = int or None
+"""
+   this function finds a peak in a list of unsorted integers
+"""
 
 
-def find_peak(list_of_integers) -> ret:
+def find_peak(list_of_integers):
     '''
-    Finds a number that is greater than both left
-    and right
+    Finds the peak in a list of numbers
     '''
-
-    listLen = len(list_of_integers)
-    if listLen == 0:
+    length = len(list_of_integers)
+    if length == 0:
         return None
+    if length == 1:
+        return (list_of_integers[0])
+    if length == 2:
+        return list_of_integers[0] \
+           if list_of_integers[0] >= list_of_integers[1] \
+           else list_of_integers[1]
 
-    tmp = list_of_integers
-    i = 0
-    n = listLen - 1
-
-    if tmp[i] > tmp[i+1]:
-        return tmp[i]
-    if tmp[n] > tmp[n-1]:
-        return tmp[n]
-
-    x = (i + n) // 2
-    if tmp[x-1] < tmp[x] and tmp[x+1] < tmp[x]:
-        return tmp[x]
-    if tmp[x] < tmp[x-1]:
-        return find_peak(tmp[i:x+1])
-    if tmp[x] < tmp[x+1]:
-        return find_peak(tmp[x:n+1])
-    return tmp[i]
+    for idx in range(0, length):
+        value = list_of_integers[idx]
+        if (idx > 0 and idx < length - 1 and
+           list_of_integers[idx + 1] <= value and
+           list_of_integers[idx - 1] <= value):
+            return value
+        elif idx == 0 and list_of_integers[idx + 1] <= value:
+            return value
+        elif idx == length - 1 and list_of_integers[idx - 1] <= value:
+            return value
+    return value
