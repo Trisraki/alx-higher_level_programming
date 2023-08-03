@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 """
-This module contains a Square class
-inherits from the Rectangle class.
+Module contains class Square
+
+Inherits from Rectangle;
+Inits superclass' id, width (as size), height (as size), x, y
+Contains public attribute size
+Prints [Square] (<id>) <x>/<y> - <size>
+Updates attributes: arg1=id, arg2=size, arg3=x, arg4=y
+Returns dictionary representation of attributes
 """
 
 
@@ -10,72 +16,81 @@ from models.rectangle import Rectangle
 
 class Square(Rectangle):
     """
-    This Square class inherits from the
-    Rectangle class. It uses all the attributes of
-    the parent class except that width and height are of
-    the same values.
-    -------
-    Attributes ===>
-    id
-    width
-    height
-    x
-    y
+    defines class Square; inherits from class Rectangle
+    Inherited Attributes:
+        id
+        __weight        __height
+        __x             __y
+    Class Attributes:
+        size
+    Inherted Methods:
+        Base.init(self, id=None)
+        Rectangle.init(self, width, height, x=0, y=0, id=None)
+        update(self, *args, **kwargs)
+        width(self)      width(self, value)
+        height(self)     height(self, value)
+        x(self)          x(self, value)
+        y(self)          y(self, value)
+        area(self)       display(self)
+    Methods:
+        __str__
+        __init__(self, size, x=0, y=0, id=None)
+        update(self, *args, **kwargs)
+        size(self)       size(self, value)
+        to_dictionary(self)
     """
-
     def __init__(self, size, x=0, y=0, id=None):
-        """ Instantiates the Square object """
+        """Initialize"""
         super().__init__(size, size, x, y, id)
         self.size = size
 
-    def __str__(self):
-        """ Prints a stirng representation of the object """
-        a = self.__class__.__name__
-        b = self.id
-        c = self.x
-        d = self.y
-        e = self.width
-        return f"[{a}] ({b}) {c}/{d} - {e}"
-
     @property
     def size(self):
-        """ Returns the width and height of the square object """
+        """Getter size"""
         return self.width
 
     @size.setter
     def size(self, value):
-        """ sets a new value for size attribute """
+        """Setter size - sets width and height as size"""
         self.width = value
         self.height = value
 
+    def __str__(self):
+        """Prints [Square] (<id>) <x>/<y> - <size>"""
+        return "[{:s}] ({:d}) {:d}/{:d} - {:d}".format(
+            self.__class__.__name__, self.id, self.x, self.y,
+            self.size)
+
     def update(self, *args, **kwargs):
-        """ updates the attributes of the Square object """
+        """
+        If args: set attributes in this order: id, width, height, x, y
+        If no args given: set attributes according to kwargs
+        """
         if args:
-            for arg in range(len(args)):
-                try:
-                    self.id = args[0]
-                    self.width = args[1]
-                    self.height = args[1]
-                    self.x = args[2]
-                    self.y = args[3]
-                except IndexError:
-                    pass
+            for k, v in enumerate(args):
+                if k == 0:
+                    self.id = v
+                elif k == 1:
+                    self.size = v
+                elif k == 2:
+                    self.x = v
+                else:
+                    self.y = v
         else:
             if "id" in kwargs:
                 self.id = kwargs["id"]
             if "size" in kwargs:
-                self.width = kwargs["size"]
-                self.height = kwargs["size"]
+                self.size = kwargs["size"]
             if "x" in kwargs:
                 self.x = kwargs["x"]
             if "y" in kwargs:
                 self.y = kwargs["y"]
 
     def to_dictionary(self):
-        """ Returns the dictionary representation of the Square object """
-        e_dict = {}
-        e_dict["id"] = self.id
-        e_dict["size"] = self.size
-        e_dict["x"] = self.x
-        e_dict["y"] = self.y
-        return e_dict
+        """Return dictionary representation"""
+        d = {}
+        d["id"] = self.id
+        d["size"] = self.size
+        d["x"] = self.x
+        d["y"] = self.y
+        return d
